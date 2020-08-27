@@ -96,9 +96,7 @@ const Sidebar = (props) => {
         </label>
         </div>
         <div id='filterLabelsOptions' className="optionContainer">
-            <h4> Filter Tickets by label</h4>
-                {/* <Search Search id="labeFilterSearch" placeholder="enter ticket label" /> */}
-                {/* FIX */}
+            <h4> Filter Tickets with labels</h4>
                 {labels.map((label) => (
                     <div key={label.name} className="labelCheckbox">
                     <input

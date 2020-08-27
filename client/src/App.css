@@ -122,9 +122,9 @@ main{
     right: -5%;
     width:0%;
     background-color:gray;
-
 }
 #sidebar.open{
+    transition: 1s;
     right:0;
     width:50%;
     

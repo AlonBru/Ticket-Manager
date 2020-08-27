@@ -1,7 +1,5 @@
 ## Current Assignment
-- [ ] FIX in SideBar
-- [ ] Beautify
-- [ ] make menu button change classes of main and side bar, implement media query (sidebar 50% overscreen)
+- [x] Beautify
 
 ## Terminals
 1. front
@@ -13,14 +11,15 @@
 - [x] loads from server 
 - [x] search 
 - [x] counter hidden tasks
-- [x] unhide
+- [x] unhide button
+
 
 ## STYLE
 - [x] mail clickable (make like link)
-- [ ] Automaticate text newline.
+- [x] Automaticate text newline.
 - [ ] condense all change functions in sidebar switch statement
 - [ ] React media hook
-- [ ] make closed tickets grayed out
+- [x] make closed tickets grayed out
 - [ ] add users file holding their preferred options;
     - [ ] add users name to email string
  
@@ -31,12 +30,12 @@
     - [x] filter by label
     - [x] time range
 - [x] send mail directly 
-- [ ] click label to filter
+- [x] click label to filter
 - [ ] animated favicon https://usefulangle.com/post/45/animate-favicon-gif-javascript
 
 ## BONUS:
 - [ ] add tests for new features
-- [ ] deploy with Glitch
+- [x] deploy with Glitch
 - [ ] fix backend test #3
 
 

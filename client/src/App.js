@@ -52,8 +52,10 @@ function App() {
     setTicketsToDisplay(copyOfTickets);
   }
   const labelClick= (e) => {
+      
       if (e.target.className==='label'){
-          let label= e.target.value;
+          let label= e.target.innerHTML;
+          console.log(label)
           const newOptions= {...options};
           let labelToSet = newOptions.filterLabels.find(element=>element.name===label);
           labelToSet.active = true;

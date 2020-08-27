@@ -12,17 +12,12 @@ const Ticket = (props) => {
     await axios.post(`/api/tickets/${id}/${done ? 'undone' : 'done'}`);
     props.update();
   }
-  const formatText = (text) => {
-    let splitText = text.split(/\. /)
-    return splitText.join('.\n');
-  };
-  if(labels&&labels[1]==='Api'){
-    }
+  
   return (
     <div 
     className={done ? 'done ticket' : 'ticket'} 
     onClick={labelClick}
-    style={{color:done ? '#ddd' : 'black'}}>
+    style={{backgroundColor:done ? 'white' : 'white',color:done ? '#ddd' : 'black'}}>
       <div className='ticketTitleSpace' >
         <div className='hideTicketButton' onClick={() => props.onHide(id)}>
             <div className='sliceContainer ' >
@@ -37,7 +32,7 @@ const Ticket = (props) => {
         </h3>  
       </div>
         
-      <p className='ticketContent'>{formatText(content)}</p>
+      <p className='ticketContent'>{(content)}</p>
 
       <span className='ticketBy'>
         <strong>By: </strong>

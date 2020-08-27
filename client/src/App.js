@@ -8,9 +8,8 @@ import ShowButton from './components/ShowButton';
 import './App.css';
 
 function App() {
-
   const [options, setOptions] = useState({
-    ThemeColor:{color:'#00a4a4'},
+    ThemeColor: { color: '#00a4a4' },
     displayMenu: false,
     filterLabels: [],
     hideDone: { active: false },
@@ -45,23 +44,21 @@ function App() {
     changedOptions.displayMenu = !changedOptions.displayMenu;
     setOptions(changedOptions);
   };
-  function hideTicket (id) {
+  function hideTicket(id) {
     const copyOfTickets = ticketsToDisplay.slice();
     const ticketToHide = copyOfTickets.find((ticket) => ticket.id === id);
     ticketToHide.hide = true;
     setTicketsToDisplay(copyOfTickets);
   }
-  const labelClick= (e) => {
-      
-      if (e.target.className==='label'){
-          let label= e.target.innerHTML;
-          console.log(label)
-          const newOptions= {...options};
-          let labelToSet = newOptions.filterLabels.find(element=>element.name===label);
-          labelToSet.active = true;
-          setOptions(newOptions)
-      }
-  }
+  const labelClick = (e) => {
+    if (e.target.className === 'label') {
+      const label = e.target.innerHTML;
+      const newOptions = { ...options };
+      const labelToSet = newOptions.filterLabels.find((element) => element.name === label);
+      labelToSet.active = true;
+      setOptions(newOptions);
+    }
+  };
   function renderTickets() {
     const { hideDone, timeRange, filterLabels } = options;
     // filters hidden tickets
@@ -123,105 +120,92 @@ function App() {
   }
   const activeLabelFilters = options.filterLabels.filter((label) => label.active);
   const ticketsHidden = ticketsToDisplay.filter((ticket) => ticket.hide);
-function checkForLabels(str){
-    console.log(ticketsToDisplay.filter(ticket=>{
-        if (!ticket.labels) return false;
-        return ticket.labels.includes(str)
-    }).length,str)
-    }
-checkForLabels('Corvid')
-  if (ticketsToDisplay[0] === 'loading') {
-    return (
-      <div>
-        {/* <Search search={searchTickets}/> */}
-        <h1>LOADING</h1>
-      </div>
-    );
-  }
- 
-return (
+
+  return (
     <>
-    <header style={{background:options.ThemeColor.color}}>
-    
-    <img id='logo' src={icon} alt='icon'/>
-    <h1> Ticket Master</h1>
-    <Search
+      <header style={{ background: options.ThemeColor.color }}>
+
+        <img id="logo" src={icon} alt="icon" />
+        <h1> Ticket Master</h1>
+        <Search
           search={searchTickets}
           id="searchInput"
           placeholder="search a title"
-        /> 
-    </header>
-    <div id="optionsStatus">
-    <span id='labelStatus' className='status'>
-        filter by labels:
-        {
+        />
+      </header>
+      <div id="optionsStatus">
+        <span id="labelStatus" className="status">
+          filter by labels:
+          {
             activeLabelFilters.length
-            ? (
+              ? (
                 <ul>
-                {
+                  {
                     activeLabelFilters
-                    .map((label) => <li key={label.name}>{label.name}</li>)
-                }
+                      .map((label) => <li key={label.name}>{label.name}</li>)
+                  }
                 </ul>
-            )
-            : 'none'
-        }
-    </span>
-    <span  id='doneStatus' className='status'>
-        closed tickets:
-        {options.hideDone ? 'hidden' : 'shown'}
-    </span>
-    <span  id='timeStatus' className='status'>
-        time range:
-        {options.timeRange.active ? options.timeRange.range : 'all'}
-    </span>
-    </div>
-    
-    <div id='ticketCounterContainer'>
-        <span id='ticketCounter'>
-        {renderTickets().length}
-        /
-        {ticketsToDisplay.length}
-        {' '}
-        of available Tickets displayed
-        {' '}
+              )
+              : 'none'
+          }
+        </span>
+        <span id="doneStatus" className="status">
+          closed tickets:
+          {options.hideDone.active ? 'hidden' : 'shown'}
+        </span>
+        <span id="timeStatus" className="status">
+          time range:
+          {options.timeRange.active ? options.timeRange.range : 'all'}
+        </span>
+      </div>
+
+      <div id="ticketCounterContainer">
+        <span id="ticketCounter">
+          {renderTickets().length}
+          /
+          {ticketsToDisplay.length}
+          {' '}
+          of available Tickets displayed
+          {' '}
         </span>
         <ShowButton
-            hiddenTickets={ticketsHidden.length}
-            function={unHideTickets}
+          hiddenTickets={ticketsHidden.length}
+          function={unHideTickets}
         />
-    </div>
-    <main id="main" >
-        <button 
-        id='menuButton'
-        className={
+      </div>
+      <main id="main">
+        <button
+          id="menuButton"
+          className={
 
             options.displayMenu
-            ?"open is-active hamburger hamburger--arrow-r "
-            :'hamburger hamburger--arrow-r '
-        }
-        type="button" 
-        onClick={toggleMenu
-        }>
-            <span class="hamburger-box ">
-                <span class="hamburger-inner"></span>
-            </span>
+              ? 'open is-active hamburger hamburger--arrow-r '
+              : 'hamburger hamburger--arrow-r '
+          }
+          type="button"
+          onClick={toggleMenu}
+        >
+          <span className="hamburger-box ">
+            <span className="hamburger-inner" />
+          </span>
         </button>
         <Sidebar
-        options={{ ...options }}
-        setOptions={setOptions}
-        labels={options.filterLabels}
-    />
-        <div 
-        id="shownTickets" 
-        style={{
-            marginRight:options.displayMenu 
-            ?'25%' 
-            : 0 }}>
+          options={{ ...options }}
+          setOptions={setOptions}
+          labels={options.filterLabels}
+        />
+        <div
+          id="shownTickets"
+          style={{
+            marginRight: options.displayMenu
+              ? '25%'
+              : 0,
+          }}
+        >
           {renderTickets()}
         </div>
-        
-    </main>
+
+      </main>
     </>
   );
 }

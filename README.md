@@ -29,9 +29,6 @@ you can also __unhide__ any hidden tickets.
 ![demo (given tests)](ui-testing-recording.gif)
 
 
-### included tests for:
-- menu opens
-- choosing to hide closed works
 ## credits
 where they are due;
 I have used ideas and code from these sources

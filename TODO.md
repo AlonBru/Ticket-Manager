@@ -20,7 +20,10 @@
 - [ ] Automaticate text newline.
 - [ ] condense all change functions in sidebar switch statement
 - [ ] React media hook
-
+- [ ] make closed tickets grayed out
+- [ ] add users file holding their preferred options;
+    - [ ] add users name to email string
+ 
 ## Added Features:
 - [x] mark as done
 - [x] options sidebar

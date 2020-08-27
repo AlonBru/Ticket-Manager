@@ -14,7 +14,8 @@ const Ticket = (props) => {
   }
   
   return (
-    <div 
+    <div
+    key={id}
     className={done ? 'done ticket' : 'ticket'} 
     onClick={labelClick}
     style={{backgroundColor:done ? 'white' : 'white',color:done ? '#ddd' : 'black'}}>
@@ -22,8 +23,8 @@ const Ticket = (props) => {
         <div className='hideTicketButton' onClick={() => props.onHide(id)}>
             <div className='sliceContainer ' >
                 <a className=" btn-slice" >
-                    <div class="top"><span>Hide Ticket</span></div>
-                    <div class="bottom"><span>Hide Ticket</span></div>
+                    <div className="top"><span>Hide Ticket</span></div>
+                    <div className="bottom"><span>Hide Ticket</span></div>
                 </a>  
             </div>
         </div>
@@ -54,10 +55,10 @@ const Ticket = (props) => {
       <span className='ticketLabels'>
         <strong>Labels: </strong>
         <Labels data={labels} />
-        <button class="doneButton btn btn-flip-down" onClick={markDone}>
+        <button className="doneButton btn btn-flip-down" onClick={markDone}>
           Flip Down
           <div 
-              class="front" 
+              className="front" 
                   style={{
                       backgroundColor:done
                       ?'red'
@@ -66,7 +67,7 @@ const Ticket = (props) => {
               >
               This Ticket is {done?'Closed':'Open'}
           </div>
-          <div class="back" style={{backgroundColor:!done?'red':'#90ee90'}}> {done?'Reopen Ticket?':'Close Ticket?'}</div>
+          <div className="back" style={{backgroundColor:!done?'red':'#90ee90'}}> {done?'Reopen Ticket?':'Close Ticket?'}</div>
         </button>
       </span>
       </div>

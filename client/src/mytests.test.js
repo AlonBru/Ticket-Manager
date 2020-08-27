@@ -46,42 +46,6 @@ describe(projectName, () => {
     useNock(page, ['http://localhost:3000/api']);
   });
 
-//   test('activate hide-closed', async () => {
-//     await page.goto('http://localhost:3000/', { waitUntil: 'networkidle0' })
-//     const currentTitle = await page.title();
-//     expect(currentTitle).toBe('Tickets Manager');
-//   })
-//   test('The tickets manager load tickets from 8080 and show them on page with labels', async () => {
-//     const getAllTicketsMock = await nock('http://localhost:3000/', { allowUnmocked: true })
-//       .get('/api/tickets')
-//       .query(() => true)
-//       .reply(200, mockData);
-//     await page.goto('http://localhost:3000/', { waitUntil: 'networkidle0' })
-//     const elements = await page.$$('.ticket');
-//     expect(elements.length).toBe(mockData.length);
-//     expect(getAllTicketsMock.isDone()).toBe(true)
-
-//     let firstLabel = await page.$('.ticket .label');
-//     let firstLabelValue = await (await firstLabel.getProperty('innerText')).jsonValue();
-//     expect(firstLabelValue).toBe(mockData[0].labels[0])
-//   });
-
-//   test('The user can filter tickets by typing on input with id - searchInput', async () => {
-//     const filterText = 'h';
-//     const getFilteredTicketsMock = await nock('http://localhost:3000/', { allowUnmocked: true })
-//       .get('/api/tickets')
-//       .query(({ searchText }) => {
-//         return filterText === searchText;
-//       })
-//       .reply(200, [mockData[0]]);
-
-//     await page.type('#searchInput', filterText);
-//     expect(getFilteredTicketsMock.isDone()).toBe(true)
-//     await (new Promise((resolve) => setTimeout(resolve, 3000)));
-//     const elements = await page.$$('.ticket');
-//     expect(elements.length).toBe(1);
-//   });
-
   test('can open menu, select to hide closed', async () => {
     await nock('http://localhost:3000/', { allowUnmocked: true })
       .get('/api/tickets')
@@ -94,36 +58,13 @@ describe(projectName, () => {
     expect(page.click('#sidebar strong')).resolves
     await page.hover('#showClosed');
     await page.click('#showClosed')
-    await menuButton.hover();
-    await menuButton.click();
-    await setTimeout(()=>{expect(elements.length).toBe(mockData.length-1)},500)
-        const elements = await page.$$('.ticket');
+    let elements = await page.$$('.ticket');
+    async function checkWhenRendered() {
+         const doneFilterStatus= await page.$("#doneStatus")
+         if(doneFilterStatus.innerHTML==='closed tickets: shown'){
+             expect(elements.length).toBe(mockData.length-1)
+         }else{setTimeout(checkWhenRendered,500)}
+     }
+     checkWhenRendered();
     ; })
 })
-
-//     await page.hover('.ticket');
-//     await page.click('.ticket .hideTicketButton');
-
-//     let elementsAfterHide = await page.$$('.ticket');
-//     expect(elementsAfterHide.length).toBe(mockData.length - 1);
-
-//     let hideTicketsCounter = await page.$('#hideTicketsCounter');
-//     let currentCounter = await (await hideTicketsCounter.getProperty('innerText')).jsonValue();
-//     expect(currentCounter).toBe('1')
-
-//     await page.click('.ticket .hideTicketButton');
-
-//     elementsAfterHide = await page.$$('.ticket');
-//     expect(elementsAfterHide.length).toBe(mockData.length - 2);
-
-//     hideTicketsCounter = await page.$('#hideTicketsCounter');
-//     currentCounter = await (await hideTicketsCounter.getProperty('innerText')).jsonValue();
-//     expect(currentCounter).toBe('2')
-//   });
-
-//   test('Can restore list', async () => {
-//     await page.click('#restoreHideTickets');
-//     const elements = await page.$$('.ticket');
-//     expect(elements.length).toBe(mockData.length);
-//   })
-// })

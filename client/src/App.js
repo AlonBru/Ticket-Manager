@@ -96,7 +96,6 @@ function App() {
 
     return filteredTickets.map((ticket) => (
       <Ticket
-        key={ticket.id}
         data={ticket}
         onHide={hideTicket}
         update={grabTickets}

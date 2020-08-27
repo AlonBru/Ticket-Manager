@@ -21,7 +21,7 @@
       "Corvid",
       "Guidelines"
     ],
-    "done": false
+    "done": true
   },
   {
     "id": "ab6fc754-0e01-5cfb-84b9-cf37c1c0cdb5",
@@ -898,7 +898,8 @@
     "title": "Adding Ads.txt file",
     "content": "Hi, \n\nI have a new blog that's been up for a couple of months and would like to hook up an ads.txt file so that we can make a few cents to offset the work we're putting into this.  I asked for help via the support team but they told me to vote for a feature that did this and sent me here.\n\nWe've had an ads.txt file provided to us which should be able to found here https://<my website>/ads.txt, the same place as https://<my website>/robots.txt (though this in internally generated).\n\nI'm at a loss for how to do this as I've looked for documentation on how and haven't come up with anything.\n\nCan anyone help and/or offer any insight on a direction to move in?\n\nMuch appreciated,\nJenny\n\n\n\n\n",
     "userEmail": "posfen@jak.gr",
-    "creationTime": 1520169499590
+    "creationTime": 1520169499590,
+    "done": true
   },
   {
     "id": "ef693c5d-295d-5c61-bf4b-8cb192bd863c",

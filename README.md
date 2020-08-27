@@ -26,8 +26,7 @@ you can also __unhide__ any hidden tickets.
     - unhide button
 
 ### a brief demo:
-![demo](./ui-testing-recording.gif)
-
+![demo (given tests)](ui-testing-recording.gif)
 
 ## credits
 where they are due;

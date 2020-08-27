@@ -177,7 +177,6 @@ function App() {
         <button
           id="menuButton"
           className={
-
             options.displayMenu
               ? 'open is-active hamburger hamburger--arrow-r '
               : 'hamburger hamburger--arrow-r '

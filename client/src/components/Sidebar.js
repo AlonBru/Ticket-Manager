@@ -1,7 +1,8 @@
 import React from 'react';
+import ColorOption from './ColorOption';
 
 const Sidebar = (props) => {
-  const { options, setOptions, labels } = props;
+  const { options, setOptions, labels, clearLabels } = props;
   const {
     hideDone, timeRange, filterLabels, ThemeColor,
   } = options;
@@ -49,18 +50,12 @@ const Sidebar = (props) => {
       <div id="themeColorOptions" className="optionContainer">
         <strong>Pick a Colour preset</strong>
         <br />
-        <input type="button" value="Sea Green" style={{ background: '#2e8b57', color: 'white' }} onClick={changeColour} />
-        <br />
-        <input type="button" value="Deep Blue" style={{ background: '#313fb8', color: 'white' }} onClick={changeColour} />
-        <br />
-        <input type="button" value="Calming Teal" style={{ background: '#00a4a4', color: 'white' }} onClick={changeColour} />
-        <br />
-        <input type="button" value="Cheerful Pink" style={{ background: '#ffb6c1', color: 'white' }} onClick={changeColour} />
-        <br />
-        <input type="button" value="Chilled Sangria" style={{ background: '#8b0000', color: 'white' }} onClick={changeColour} />
-        <br />
-        <input type="button" value="Lines" style={{ background: 'repeating-linear-gradient(45deg, #555, white 50px)', color: 'white' }} onClick={changeColour} />
-        <br />
+        <ColorOption value="Sea Green" style={{ background: '#2e8b57', color: 'white' }} changeColour={changeColour} />
+        <ColorOption value="Deep Blue" style={{ background: '#313fb8', color: 'white' }} changeColour={changeColour} />
+        <ColorOption value="Calming Teal" style={{ background: '#00a4a4', color: 'white' }} changeColour={changeColour} />
+        <ColorOption value="Cheerful Pink" style={{ background: '#ffb6c1', color: 'white' }} changeColour={changeColour} />
+        <ColorOption value="Chilled Sangria" style={{ background: '#8b0000', color: 'white' }} changeColour={changeColour} />
+        <ColorOption value="Lines" style={{ background:'repeating-linear-gradient(45deg, #555, white 50px)', color: 'white' }} changeColour={changeColour} />
         <label htmlFor="favcolor">Or select your favorite color:</label>
         <input type="color" id="favcolor" name="favcolor" value="#ff0000" onChange={changeColour} />
         <br />
@@ -101,6 +96,7 @@ const Sidebar = (props) => {
       </div>
       <div id="filterLabelsOptions" className="optionContainer">
         <h4> Filter Tickets with labels</h4>
+        { labels.some(label=>label.active)?<button className='restoreLabels' onClick={clearLabels}>clear</button>:<></>}
         {labels.map((label) => (
           <div key={label.name} className="labelCheckbox">
             <input

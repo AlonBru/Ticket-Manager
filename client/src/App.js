@@ -13,9 +13,10 @@ function App() {
     displayMenu: false,
     filterLabels: [],
     hideDone: { active: false },
-    timeRange: { active: false, range: 'Always' },
+    timeRange: { active: false, range: 'Always' }
   });
   const [ticketsToDisplay, setTicketsToDisplay] = useState(['loading']);
+  const [ query,setQuery]=useState('')
   const getAvailableLabels = (tickets) => {
     const labelsArray = [];
     tickets.forEach((ticket) => {
@@ -30,6 +31,7 @@ function App() {
     optionsWithLabels.filterLabels = availableLabels;
     setOptions(optionsWithLabels);
   };
+ 
   async function grabTickets() {
     const tickets = (await axios.get('/api/tickets')).data;
     console.log('brought', tickets);
@@ -37,7 +39,7 @@ function App() {
     setTicketsToDisplay(tickets);
   }
   useEffect(() => {
-    grabTickets();
+    searchTickets();
   }, []);
   const toggleMenu = () => {
     const changedOptions = { ...options };
@@ -93,17 +95,19 @@ function App() {
       };
       filteredTickets = filteredTickets.filter(filterByLabels);
     }
-
     return filteredTickets.map((ticket) => (
       <Ticket
         data={ticket}
         onHide={hideTicket}
-        update={grabTickets}
+        update={searchTickets}
         options={options}
         labelClick={labelClick}
       />
     ));
   }
+  const displayedTickets = renderTickets()
+  let ticketCount = displayedTickets.length
+
   function unHideTickets() {
     const newTickets = ticketsToDisplay.map((ticket) => {
       if (ticket.hide) { ticket.hide = false; }
@@ -111,15 +115,23 @@ function App() {
     });
     setTicketsToDisplay(newTickets);
   }
-  async function searchTickets(e) {
-    const query = e.target.value;
-    const tickets = (await axios.get(`/api/tickets?searchText=${query}`)).data;
+  async function searchTickets(e={target:null}) {
+      let searchQuery=e.target? e.target.value : query;
+      if(searchQuery!==query){setQuery(searchQuery)}
+    const tickets = (await axios.get(`/api/tickets?searchText=${searchQuery}`)).data;
     setTicketsToDisplay(tickets);
     getAvailableLabels(tickets);
   }
   const activeLabelFilters = options.filterLabels.filter((label) => label.active);
   const ticketsHidden = ticketsToDisplay.filter((ticket) => ticket.hide);
-
+  const clearLabels = () =>{
+      const newOptions={...options}
+      newOptions.filterLabels= options.filterLabels.map(label=>{
+          label.active=false;
+          return label
+      })
+      setOptions(newOptions)
+  }
   return (
     <>
       <header style={{ background: options.ThemeColor.color }}>
@@ -134,33 +146,36 @@ function App() {
       </header>
       <div id="optionsStatus">
         <span id="labelStatus" className="status">
-          filter by labels:
+          filter by labels:{' '}
           {
             activeLabelFilters.length
               ? (
+                  <>
+                <button className='restoreLabels' onClick={clearLabels}>clear</button>
                 <ul>
                   {
                     activeLabelFilters
                       .map((label) => <li key={label.name}>{label.name}</li>)
                   }
                 </ul>
+                </>
               )
-              : 'none'
+              :'none'
           }
         </span>
         <span id="doneStatus" className="status">
-          closed tickets:
+          closed tickets:{' '}
           {options.hideDone.active ? 'hidden' : 'shown'}
         </span>
         <span id="timeStatus" className="status">
-          time range:
+          time range:{' '}
           {options.timeRange.active ? options.timeRange.range : 'all'}
         </span>
       </div>
 
       <div id="ticketCounterContainer">
         <span id="ticketCounter">
-          {renderTickets().length}
+          {ticketCount}
           /
           {ticketsToDisplay.length}
           {' '}
@@ -169,7 +184,7 @@ function App() {
         </span>
         <ShowButton
           hiddenTickets={ticketsHidden.length}
-          function={unHideTickets}
+          hideFunction={unHideTickets}
         />
       </div>
       <main id="main">
@@ -191,6 +206,7 @@ function App() {
           options={{ ...options }}
           setOptions={setOptions}
           labels={options.filterLabels}
+          clearLabels={clearLabels}
         />
         <div
           id="shownTickets"
@@ -200,7 +216,7 @@ function App() {
               : 0,
           }}
         >
-          {renderTickets()}
+          {displayedTickets}
         </div>
 
       </main>

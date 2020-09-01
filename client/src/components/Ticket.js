@@ -18,7 +18,8 @@ const Ticket = (props) => {
     key={id}
     className={done ? 'done ticket' : 'ticket'} 
     onClick={labelClick}
-    style={{backgroundColor:done ? 'white' : 'white',color:done ? '#ddd' : 'black'}}>
+    
+    >
       <div className='ticketTitleSpace' >
         <div className='hideTicketButton' onClick={() => props.onHide(id)}>
             <div className='sliceContainer ' >
@@ -38,10 +39,11 @@ const Ticket = (props) => {
       <span className='ticketBy'>
         <strong>By: </strong>
         <a
+          target=''
           className="clickableMail"
-          href={`mailto:${userEmail}
+          href={!done?`mailto:${userEmail}
           ?subject=About your enquiry (ticket id ${id}...)
-          &body=Hello,%0D%0AThis mail is regarding your ticket titled "${title}"%0D%0A`}
+          &body=Hello,%0D%0AThis mail is regarding your ticket titled "${title}"%0D%0A`:null}
         >
           {userEmail}
         </a>
@@ -53,7 +55,6 @@ const Ticket = (props) => {
       </span><br/>
       <div className='ticketDetails'>
       <span className='ticketLabels'>
-        <strong>Labels: </strong>
         <Labels data={labels} />
         <button className="doneButton btn btn-flip-down" onClick={markDone}>
           Flip Down

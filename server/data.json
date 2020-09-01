@@ -1,5 +1,17 @@
 [
   {
+    "id": "aaa",
+    "title": "Need a Little Help with Your Site? Hire a Corvid Web Developer",
+    "content": "Here at Wix we strive to support you with this community forum, API references, articles, videos and code examples. But sometimes you might need a little extra help to get your site exactly the way you want it. \nHire a developer from the Wix Arena, an online marketplace with top Corvid web developers from around the world. Submit your project details here, and we’ll find the right professional for you.",
+    "userEmail": "jug@nesetal.af",
+    "creationTime": 1542111235544,
+    "labels": [
+      "Corvid",
+      "Api"
+    ],
+    "done": false
+  },
+  {
     "id": "81a885d6-8f68-5bc0-bbbc-1c7b32e4b4e4",
     "title": "Need a Little Help with Your Site? Hire a Corvid Web Developer",
     "content": "Here at Wix we strive to support you with this community forum, API references, articles, videos and code examples. But sometimes you might need a little extra help to get your site exactly the way you want it. \nHire a developer from the Wix Arena, an online marketplace with top Corvid web developers from around the world. Submit your project details here, and we’ll find the right professional for you.",
@@ -9,7 +21,7 @@
       "Corvid",
       "Api"
     ],
-    "done": true
+    "done": false
   },
   {
     "id": "36043e94-6d21-5d2a-b1eb-f983996e3d79",
@@ -21,7 +33,7 @@
       "Corvid",
       "Guidelines"
     ],
-    "done": true
+    "done": false
   },
   {
     "id": "ab6fc754-0e01-5cfb-84b9-cf37c1c0cdb5",
@@ -114,7 +126,8 @@
     "title": "CONFIRMED BUG: Background video fails to load with errors 403 and CORS",
     "content": " \nI can change with code page backgrounds with images but not with videos using $w(Document).background.src\nI'm talking about changing between stock Wix background videos in the Wix video manager, not external videos.\n\nSo with the API one can obtain the URLs for images and videos and they look like these:\nwix:image://v1/8034aa3291a54c489a7b7a3121d994f9.png/Bananas.png#originWidth=1177&originHeight=1200\n\nwix:video://v1/11062b_03c50f8fe4a34cc297a984e483a282ef/_#posterUri=/11062b_03c50f8fe4a34cc297a984e483a282eff000.jpg&posterWidth=1920&posterHeight=1080\n\nI store the URL in session storage and then reload the page.\nThen I can change the page background with this code inside the onReady():\n\n$w(\"Document\").background.src = \"wix:image:// ...\";\n\n$w(\"Document\").background.src = \"wix:video:// ...\";\n\n\nWorks for images, fails for videos.\nChrome just fails with this:\n\n \nThis lead me to believe that the URL for the video was bad.\nI spent too much time looking, testing and looking some more for an answer.\nFinally, using MS Edge, I got two different error messages that were helpful:\n\n \n and occasionally: \n \n Plugging one of the Wix video URLs into Chrome gives this 403 error: \n \nSo I have to conclude that Wix/Corvid is not allowing my Wix pages to access stock Wix videos in the Wix video manager - which should be an error on the Wix/Corvid end, not a feature.\n\nHere is a test page so you can see the error messages when requesting a change of video background:\n\n(use Chrome or MS Edge and look at console - FireFox has an error message that blocks the other messages)\nhttps://www.ualmatrix.com/clock-minimal-image \nAfter initial load click the \"Show URL\" button first so you can confirm the current video URL.Then select backgrounds from the \"Theme\" dropdown list.\nNote that the images work (page reloads and changes background image inside the onReady() ), and the videos have various failures:\nSometimes they fail with a 403 message and no backup image, and others show the backup image without an error message.\nOccasionally a CORS error pops up too.\nFull URL for Wix video background \"Ocean\"\nwix:video://v1/11062b_95d34f15761e4114a57b17823228948e/_#posterUri=11062b_95d34f15761e4114a57b17823228948ef000.jpg&posterWidth=1920&posterHeight=1080\n\nApparently, that gets converted internally by the Wix server to:\nhttps://video.wixstatic.com:443/11062b_95d34f15761e4114a57b17823228948e/1080p/mp4/file.mp4\n\nAnd since Wix thinks thinks my Wix page should not have access to that URL, it loads the poster instead (some files do and some don't):\n_#posterUri=11062b_95d34f15761e4114a57b17823228948ef000.jpg&posterWidth=1920&posterHeight=1080  \n\nTo summarize the dilemma:\nIf my Wix/Corvid pages can change stock Wix background images, then the same should also apply to stock Wix background videos. Instead, the video URLs are blocked, resulting in a 403/CORS error.\n\nSince videos are bandwidth intensive, I can see why Corvid would be careful with them, but it seems they went a bridge too far when a Wix/Corvid page cannot access Wix/Corvid stock videos.\n\nMaybe I'm overlooking something I can do on my end, but this looks very much like a problem on the Wix end of things.\n\nWix/Corvid has server settings that allow page background image changes in the onReady() part of pages. But, it prohibits page background videos to be changed the same way as the images.\n\nLooks like a Wix/Corvid system error to me (or a flawed policy), not a feature.\nSince this is a suspected bug, I sent it to tech support.\nThey told me to place the concern in the forums - the usual circular reference games.\n\nAny assistance with this matter is greatly appreciated. \n",
     "userEmail": "rujruvjiv@uw.mx",
-    "creationTime": 1526445637085
+    "creationTime": 1526445637085,
+    "done": true
   },
   {
     "id": "6358ae3f-0eb4-5bea-aae2-dd358e0c3988",
@@ -282,7 +295,8 @@
     "title": "Progressive Web Apps (PWA)",
     "content": "Hey everyone, so I made a post about Progressive web apps a year ago, and wanted to get an update from Wix or it's users to see what's up.\n\nI want to turn my site into a Progressive Web App for IOS. \nIt goes as follows:\n- User visits site, Mobile site view loads\n- User adds site to homepage\n- User now has the website in fullscreen view as an app.\n\nIs this possible to achieve? I know that there is an app in the market that allows to convert the site into a PWA, but its not quite there yet.\n\nI think having the ability to make a site into a PWA would be a great feature, I mean, you could literally make an app bruh...",
     "userEmail": "im@ihi.vi",
-    "creationTime": 1518867438529
+    "creationTime": 1518867438529,
+    "done": true
   },
   {
     "id": "985edc12-a08f-541d-b670-9946bd4e9969",
@@ -401,7 +415,8 @@
     "title": "'loginEmail' value to pass to 2nd DB",
     "content": "I have a members area on my site which people can create an account via the standard username/password which gets saved in the Wix CRM (PrivateMembersData collection). After they click submit to create the account, it automatically takes them to another page which has form fields connected to my 2nd database which are used to create their dynamic profile page. The 2nd database has a reference field which points back to the 'loginEmail' column of the PrivateMembersData collection. \n\nThe problem I'm having is that when the member fills out the form (2nd database), all their data gets saved correctly, but the reference field ('loginEmail') is left blank. Unless I manually go in and set it via the Wix Live Database manager. [SCREENSHOT BELOW]\n\nHow can I have the users' loginEmails get automatically passed to the 2nd database so that I don't have to do this manually?\n\nBecause if a user logs out and logs back in, they're unable to see their data as the connection from PrivateMembersData and the 2nd database is broken, when this field is blank for their row.\n\nThanks in advance!\n\n \n",
     "userEmail": "wu@bomisva.bm",
-    "creationTime": 1539011605825
+    "creationTime": 1539011605825,
+    "done": true
   },
   {
     "id": "662464e6-2fb9-5289-8df2-09b8cc842f8b",
@@ -485,7 +500,8 @@
     "title": "Bypass on Multi-step forms with arrow key",
     "content": "One of the examples provided for doing multistep forms was to use a slideshow and on each slide add a block of content. However, when a user press left or right key can jump between slides and there's no way to disable that?\n\nSo basically if a user is typing and hit the left arrow key it'll go to the prev slide. Instead of move in the text field...",
     "userEmail": "mako@bojac.gm",
-    "creationTime": 1536720147802
+    "creationTime": 1536720147802,
+    "done": true
   },
   {
     "id": "79fac764-81d3-5dc3-bf11-e1df22a7f308",

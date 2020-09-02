@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ColorOption from './ColorOption';
 
 const Sidebar = (props) => {
@@ -6,7 +6,10 @@ const Sidebar = (props) => {
   const {
     hideDone, timeRange, filterLabels, ThemeColor,
   } = options;
-
+  const [favColor,setFavColor] = useState('red')
+  const changeFavColor =(e) => {
+      setFavColor(e.target.value)
+  }
   function changeLabelFilter(e) {
     const { id } = e.target;
     const labelToChange = filterLabels.find((label) => label.name === id);
@@ -57,7 +60,7 @@ const Sidebar = (props) => {
         <ColorOption value="Chilled Sangria" style={{ background: '#8b0000', color: 'white' }} changeColour={changeColour} />
         <ColorOption value="Lines" style={{ background:'repeating-linear-gradient(45deg, #555, white 50px)', color: 'white' }} changeColour={changeColour} />
         <label htmlFor="favcolor">Or select your favorite color:</label>
-        <input type="color" id="favcolor" name="favcolor" value="#ff0000" onChange={changeColour} />
+        <input type="color" id="favcolor" name="favcolor" value={favColor} onChange={changeFavColor} onBlur={changeColour} />
         <br />
       </div>
       <div id="showClosedOptions" className="optionContainer">
